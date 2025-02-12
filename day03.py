@@ -26,40 +26,36 @@ def my_pow(b, e) -> float:
         result = result * math.exp(f * math.log(b))
 
     return result
-def my_pow_pro(b, e) -> float:
-    """
-    A user-defined function that receives a base and exponent and returns the power result in the form of a real number
-    :param b: base number
-    :param e: exponent
-    :return: the power result in the form of a real number
-    """
-    result = 1
-    i=int(e)
 
-    if e<0:
-        f = e - i
-        for _ in range(i):  # for k in range(e):
-            result = result * b
-        if f > 0:
-            result = result * math.exp(f * math.log(b))
-    elif e<0:
-        f = -(e - i)
-        for _ in range(-i):  # for k in range(e):
-            result = result * b
-        if f > 0:
-            result = result * math.exp(f * math.log(b))
-        result = 1 / result
+
+def is_prime(num) -> bool:
+    """
+    A function that returns True if it is a prime number and False if it is not a prime number
+    :param num: integer number
+    :return: boolean type
+    """
+    if num >= 2:
+        i = 2
+        while i < (int(my_pow(num, 0.5)) + 1):
+        #while i*i < num+1:
+            if num % i == 0:
+                return False
+            i = i + 1
     else:
-        result = 1
+        return False
+    return True
 
-    return result
 
-print(my_pow(10, -2))
-print(my_pow(2, 9))
-print(my_pow(16, 0.5))
-print(my_pow(10, 3))
-print(my_pow(25, 0.5))  # ieee 754
+#main
+numbers = input("Input number : ").split()  # ex) 900 1000
+n1 = int(numbers[0])
+n2 = int(numbers[1])
 
-# print(math.exp(1))
-# print(math.e)
-# print(math.log(16, 2))
+if n1 > n2:
+    n1, n2 = n2, n1
+
+j = n1
+while j <= n2:
+    if is_prime(j):
+        print(j, end=' ')
+    j = j + 1
